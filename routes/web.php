@@ -12,5 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('notas');
+})->name('home');
+
+Route::get('crear', function () {
+    return view('nota-nueva');
+})->name('crear');
+
+Route::get('notas/{id}/editar', function($id) {
+    return 'Aquí podemos editar la nota: '.$id;
+})->where('id', '\d+');
+
+Route::get('notas/{id}', function($id){
+    return 'Aquí podemos ver el detalle de la nota: '.$id;
 });
+
