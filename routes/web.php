@@ -12,18 +12,26 @@
 */
 
 Route::get('/', function () {
-    return view('notas');
+
+    $notes = [
+        'Mi primeta nota',
+        'Mi segunda nota',
+        'Mi tercera nota',
+        'Mi cuarta nota'
+    ];
+
+    return view('notas', ['notes' => $notes]);
 })->name('home');
 
 Route::get('crear', function () {
     return view('nota-nueva');
 })->name('crear');
 
-Route::get('notas/{id}/editar', function($id) {
+Route::get('/editar/{id}', function($id) {
     return 'Aquí podemos editar la nota: '.$id;
 })->where('id', '\d+');
 
-Route::get('notas/{id}', function($id){
+Route::get('/nota/{id}', function($id){
     return 'Aquí podemos ver el detalle de la nota: '.$id;
 });
 
