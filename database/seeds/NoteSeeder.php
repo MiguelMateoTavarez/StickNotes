@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use App\Note;
 class NoteSeeder extends Seeder
 {
     /**
@@ -12,8 +13,7 @@ class NoteSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('notes')
-        ->insert([
+        Note::create([
             'title' => '¿Para qué sirve Composer?',
             'content' => 'Con Composer podemos instalar y 
                           actualizar frameworks como Laravel o 
@@ -24,24 +24,21 @@ class NoteSeeder extends Seeder
             'updated_at' => now()
         ]);
 
-        DB::table('notes')
-        ->insert([
+        Note::create([
             'title' => 'Instalación de Laravel',
             'content' => File::get(__DIR__.'/notes/instalation.html'),
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
-        DB::table('notes')
-        ->insert([
+        Note::create([
             'title' => 'Rutas y JSON',
             'content' => File::get(__DIR__.'/notes/rutas_y_json.html'),
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
-        DB::table('notes')
-        ->insert([
+        Note::create([
             'title' => 'Front Controller',
             'content' => 'Front Controller es un patrón de 
                             arquitectura donde un controlador
@@ -51,8 +48,7 @@ class NoteSeeder extends Seeder
             'updated_at' => now()
         ]);
 
-        DB::table('notes')
-        ->insert([
+        Note::create([
             'title' => 'Cambia el formato de parámetros dinámicos',
             'content' => File::get(__DIR__.'/notes/formato.html'),
             'created_at' => now(),

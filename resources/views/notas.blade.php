@@ -21,8 +21,8 @@
      <div class="col">
        <div class="card">
          <div class="card-body">
-           <h5 class="card-title">{{ $loop->iteration }}) {{ $note }}</h5>
-           <p class="card-text">{{ $note }}</p>
+           <h5 class="card-title">{{ $note->id }}) {{ $note->title }}</h5>
+           <p class="card-text">{!! $note->content !!} {{-- @todoL Purify HTML or use Markdown instead --}}</p>
          </div>
        </div>
      </div>

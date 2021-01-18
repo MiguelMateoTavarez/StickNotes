@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use App\Note;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,25 +16,40 @@
 
 Route::get('/', function () {
 
-    $notes = [
-        'Mi primeta nota',
-        'Mi segunda nota',
-        'Mi tercera nota',
-        'Mi cuarta nota'
-    ];
+    $notes = Note::all();
 
     return view('notas', ['notes' => $notes]);
 })->name('home');
+
+Route::get('/nota/{id}', function($id){
+    return 'Aquí podemos ver el detalle de la nota: '.$id;
+});
 
 Route::get('crear', function () {
     return view('nota-nueva');
 })->name('crear');
 
+Route::post('notas', function(Request $request) {
+
+    $request->validate([
+        'title' => 'required',
+        'content' => 'required',
+    ]);
+
+    Note::create([
+        'title' => $request->input('title'),
+        'content' => $request->input('content')
+    ]);
+
+    return redirect('/');
+});
+
 Route::get('/editar/{id}', function($id) {
+    $note = Note::find($id);
+
+    return ['note' => $note];
+
     return 'Aquí podemos editar la nota: '.$id;
 })->where('id', '\d+');
 
-Route::get('/nota/{id}', function($id){
-    return 'Aquí podemos ver el detalle de la nota: '.$id;
-});
 

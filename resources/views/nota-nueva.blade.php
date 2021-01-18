@@ -16,17 +16,29 @@
     </div>
 </div>
 <div class="container">
-    <form action="#">
+    <form method="POST" action="{{url('notas')}}">
+        @csrf
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Título</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input name="title" type="text" class="form-control" value="{{old('title')}}">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Contenido</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea name="content" class="form-control" rows="3">{{ old('content') }}</textarea>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    <br/>
+    @if($errors->any())
+    <div class="alert alert-warning" role="alert">
+        <p><strong>Favor corregir los siguientes errores: </strong></p>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
 </div>
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
