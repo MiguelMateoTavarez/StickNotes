@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\NoteController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Note;
 /*
@@ -15,42 +15,14 @@ use App\Note;
 |
 */
 
-Route::get('/', function () {
-
-    $notes = Note::all();
-
-    return view('notas', ['notes' => $notes]);
-})->name('home');
+Route::get('/', 'NoteController@index')->name('home');
 
 Route::get('/nota/{id}', function($id){
     return 'Aquí podemos ver el detalle de la nota: '.$id;
 });
 
-Route::get('crear', function () {
-    return view('nota-nueva');
-})->name('crear');
+Route::get('/editar/{id}', 'NoteController@edit')->name('edit');
 
-Route::post('notas', function(Request $request) {
+Route::get('crear', 'NoteController@create')->name('crear');
 
-    $request->validate([
-        'title' => 'required',
-        'content' => 'required',
-    ]);
-
-    Note::create([
-        'title' => $request->input('title'),
-        'content' => $request->input('content')
-    ]);
-
-    return redirect('/');
-});
-
-Route::get('/editar/{id}', function($id) {
-    $note = Note::find($id);
-
-    return ['note' => $note];
-
-    return 'Aquí podemos editar la nota: '.$id;
-})->where('id', '\d+');
-
-
+Route::post('notas', 'NoteController@store')->name('store');
