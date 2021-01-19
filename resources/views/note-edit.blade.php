@@ -10,7 +10,7 @@
                 <a class="nav-link active" aria-current="page" href="{{ route('home') }}"><i class="fas fa-list-ul"></i> Ver notas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('crear') }}"><i class="fas fa-pen"></i> Nota nueva</a>
+                <a class="nav-link" href="{{ route('create') }}"><i class="fas fa-pen"></i> Nota nueva</a>
             </li>
         </ul>
     </div>
@@ -18,7 +18,7 @@
 <div class="container">
     <h1>Editar nota</h1>
     <br/>
-    <form method="POST" action="{{url('nota/{$note->id}')}}">
+    <form method="POST" action='{{ url("note/{$note->id}") }}'>
         @csrf
         @method('PUT')
 

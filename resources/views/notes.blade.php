@@ -10,7 +10,7 @@
          <a class="nav-link" href="{{ url('/') }}"><i class="fas fa-list-ul"></i> Ver notas</a>
        </li>
        <li class="nav-item">
-         <a class="nav-link" href="{{ url('/crear') }}"><i class="fas fa-pen"></i> Nota nueva</a>
+         <a class="nav-link" href="{{ url('create') }}"><i class="fas fa-pen"></i> Nota nueva</a>
        </li>
      </ul>
    </div>
@@ -24,6 +24,11 @@
            <h5 class="card-title">{{ $note->id }}) {{ $note->title }}</h5>
            <p class="card-text">{!! $note->content !!} {{-- @todoL Purify HTML or use Markdown instead --}}</p>
          </div>
+         <form method="POST" action="{{url('note/'.$note->id)}}">
+            @csrf
+            @method('DELETE')
+            <button type="submit">Eliminar</button>
+         </form>
        </div>
      </div>
      @empty

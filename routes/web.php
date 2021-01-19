@@ -1,9 +1,7 @@
 <?php
 
-use App\Http\Controllers\NoteController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use App\Note;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,12 +15,16 @@ use App\Note;
 
 Route::get('/', 'NoteController@index')->name('home');
 
-Route::get('/nota/{id}', function($id){
+Route::get('note/{id}', function($id){
     return 'Aquí podemos ver el detalle de la nota: '.$id;
 });
 
-Route::get('/editar/{id}', 'NoteController@edit')->name('edit');
+Route::get('edit/{id}', 'NoteController@edit')->name('edit');
 
-Route::get('crear', 'NoteController@create')->name('crear');
+Route::get('create', 'NoteController@create')->name('create');
 
-Route::post('notas', 'NoteController@store')->name('store');
+Route::post('notes', 'NoteController@store')->name('store');
+
+Route::put('note/{note}', 'NoteController@update')->name('update');
+
+Route::delete('note/{id}', 'NoteController@destroy')->name('destroy');
