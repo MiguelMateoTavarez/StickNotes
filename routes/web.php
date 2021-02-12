@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'NoteController@index')->name('home');
 
-Route::get('note/{id}', function($id){
-    return 'Aquí podemos ver el detalle de la nota: '.$id;
-});
+Route::get('note/{id}', 'NoteController@details')->name('details');
 
 Route::get('edit/{id}', 'NoteController@edit')->name('edit');
 
@@ -27,4 +25,4 @@ Route::post('notes', 'NoteController@store')->name('store');
 
 Route::put('note/{note}', 'NoteController@update')->name('update');
 
-Route::delete('note/{id}', 'NoteController@destroy')->name('destroy');
+Route::get('note/{id}', 'NoteController@destroy')->name('destroy');

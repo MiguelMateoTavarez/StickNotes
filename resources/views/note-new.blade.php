@@ -3,18 +3,6 @@
 @section('title', 'Crear notas')
 
 @section('content')
-<div class="row">
-    <div class="col-sm">
-        <ul class="nav justify-content-center">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{ route('home') }}"><i class="fas fa-list-ul"></i> Ver notas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('create') }}"><i class="fas fa-pen"></i> Nota nueva</a>
-            </li>
-        </ul>
-    </div>
-</div>
 <div class="container">
     <form method="POST" action="{{url('notes')}}">
         @csrf

@@ -14,9 +14,23 @@ class NoteController extends Controller
         return view('notes', ['notes' => $notes]);
     }
 
+    public function details($id)
+    {
+        $note = Note::find($id);
+
+        return view('note-details', ['note' => $note]);
+    }
+
     public function create()
     {
         return view('note-new');
+    }
+
+    public function edit($id)
+    {
+        $note = Note::find($id);
+        
+        return view('note-edit', ['note' => $note]);
     }
 
     public function store(Request $request)
@@ -34,13 +48,6 @@ class NoteController extends Controller
         return redirect('/');
     }
 
-    public function edit($id)
-    {
-        $note = Note::find($id);
-        
-        return view('nota-editar', ['note' => $note]);
-    }
-
     public function update(Note $note, Request $request)
     {
         $request->validate([
@@ -52,7 +59,9 @@ class NoteController extends Controller
             'title' => $request->input('title'),
             'content' => $request->input('content'),
         ]);
-        return redirect("/editar/{$note->id}");
+        
+        
+        return redirect("edit/{$note->id}");
     }
 
     public function destroy($id)
